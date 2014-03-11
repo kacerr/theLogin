@@ -17,15 +17,14 @@
        <%= yield %>
     </main>
     <div id="user-widget">
-  <% if current_user %>
-    Welcome <strong><%= current_user.name %></strong>!
-    <%= link_to "Sign out", signout_path, id: "sign_out" %>
-  <% else %>
-    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-  <% end %>
   <hr>
-  <%= raw CGI::escapeHTML(current_user.inspect) %>
-  <%= raw CGI::escapeHTML(session[:omniauth_data].info.inspect) %>
+  <% if Rails.env.development? %>
+    <%= raw CGI::escapeHTML(current_user.inspect) %>
+    <br>
+    <pre>
+      <%= raw session[:omniauth_data].to_yaml %>
+    </pre>
+  <% end %>
 </div>
   </body>
 </html>

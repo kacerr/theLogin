@@ -1,0 +1,9 @@
+  <ul class="nav navbar-nav">
+  <% if signed_in? %>
+    <a class="navbar-brand">You are signed in as: <%= login_identifier %>, provider: <%= current_user.provider%></a>
+    <li>
+      <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
+    </li>
+  <% else %>
+  <% end %>
+  </ul>

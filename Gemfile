@@ -40,9 +40,14 @@ end
 # Authentication
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
 
 # i want to have 'larger' sessions
 gem 'activerecord-session_store'
+
+# environment configurations
+gem 'dotenv-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

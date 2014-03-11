@@ -1,1 +1,43 @@
 <h1> Hello, this is theLogin </h1>
+<p>
+This application is just a proof of <strong>concept and demonstration</strong> of user login with oauth (omniauth gem)
+</p>
+<p>
+It also give user an idea what information applications using these types of logins receive from oauth provider. Feel fre to use it, you'll have to authorize the app on the providers site (Facebook / Google / Twitter) and i suggest you to remove permissions for this app as soon as you finish with playing. There is really no need to let the app to access your information (even though these are just public).
+</p>
+<p>
+Most of the credits go to Railscasts: <a href="http://railscasts.com/episodes?utf8=%E2%9C%93&search=omniauth">http://railscasts.com/episodes?utf8=%E2%9C%93&search=omniauth</a><br>
+Source code available @ Github: <a href="https://github.com/kacerr/theLogin">https://github.com/kacerr/theLogin</a>
+
+<p>
+  <% if current_user %>
+    Welcome <strong><%= current_user.name %></strong>!
+    <%= link_to "Sign out", signout_path, id: "sign_out" %>
+  <% else %>
+		<h2><span class="pull-left">And here we go. Sign in with: </span>
+    <%= link_to "/auth/facebook", id: "sign_in" do %>
+    	<img src="/images/icons/facebook.png" class="pull-left" style="height:38px;">
+    <% end %>
+    <%= link_to "/auth/google", id: "sign_in" do %>
+    	<img src="/images/icons/google.png" class="pull-left" style="height:38px;">
+    <% end %>
+    <%= link_to "/auth/twitter", id: "sign_in" do %>
+    	<img src="/images/icons/twitter.png" class="pull-left" style="height:38px;">
+    <% end %>
+    </h2>
+  <% end %>
+</p>
+<% if current_user %>
+	<div class="panel panel-primary">
+  <div class="panel-heading">You are logged as <span style="font-style: bold; color: orange"><%=login_identifier%></span> with provider: <span style="font-style: bold; color: orange"><%=current_user.provider%></span></div>
+  <div class="panel-body">
+  	It gave me some information about you: <br>
+  	<hr style="margin:2px -2px 2px -2px; border: 1px solid darkgrey; ">
+    <%= raw login_info %>
+    <br><br>
+  	AND it gave me some more information about you: <br>
+  	<hr style="margin:2px -2px 2px -2px; border: 1px solid darkgrey; ">
+  	<%= raw login_extra %>
+  </div>		
+	</div>
+<% end %>
